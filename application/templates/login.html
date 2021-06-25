@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}LOGIN{% endblock %}
+{% block content %}
+<div class="container py-5 mb-5">
+  <h1 class="mb-5" style="text-align: center">LOGIN</h1>
+  <div class="row py-4">
+    <div class="col-md-8 order-md-2">
+      <form class="needs-validation" method="POST" action="{{ url_for('login') }}">
+        <div class="mb-3">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" id="username" placeholder="" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="password">Password<span class="text-muted"></span></label>
+          <input type="password" class="form-control" name="password" id="password" placeholder="" required>
+        </div>
+
+        <div class="mb-3">
+          <h6>Do not have an account?<a class="btn btn-sm btn-secondary " style="width: auto;" href="{{ url_for('register') }}">Register</a></h6>          
+        </div>
+        
+        <div class="text-center">
+          <button class="btn btn-outline-success btn-shadow btn-lg btn-block" type="submit"> Login </button>
+        </div>
+        
+      </form>
+    </div>
+    <div class="col-md-2 order-md-1"></div>
+    <div class="col-md-2 order-md-3"></div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}REGISTER{% endblock %}
+{% block content %} 
+<div class="container py-5 mb-5">
+  <h1 class="mb-5" style="text-align: center">REGISTERATION</h1>
+  <div class="row py-4">
+    <div class="col-md-8 order-md-2">
+      <form class="needs-validation" method="POST" action="{{ url_for('register') }}">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" name="firstname" id="firstName" placeholder="" value="" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" name="lastname" id="lastName" placeholder="" value="" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" id="username" placeholder="" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="password">Password <span class="text-muted"></span></label>
+          <input type="password" class="form-control" name="password" id="password" placeholder="" required>
+          <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+        </div>
+ 
+        <div class="mb-3">
+          <h6>Already have an account?<a class="btn btn-sm btn-secondary" href="{{ url_for('login') }}">Login</a></h6>         
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-outline-success btn-shadow btn-lg btn-block" type="submit"> Register </button>
+        </div>
+
+      </form>
+    </div>
+    <div class="col-md-2 order-md-1"></div>
+    <div class="col-md-2 order-md-3"></div>
+  </div>
+</div>
+{% endblock %}

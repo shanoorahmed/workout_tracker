@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Workout Log{% endblock %}
+{% block content %}
+<div class="text-center">
+    <h1>WORKOUT LOG</h1>
+</div>
+<div class="container">
+    {% for workout in workouts %}
+        <h2>{{ workout.date.strftime("%c") }}</h2>
+        {% set exercises = workout.exercises.all() %}
+
+        {% for exercise in exercises %}
+
+            <h3>{{ exercise.exercise.name }}</h3>
+
+            {% set sets = exercise.sets.all() %}
+
+            {% for s in sets %}
+                <h4>{{ s.weight }} x {{ s.reps }}</h4>
+            {% endfor %}
+
+        {% endfor %}
+        <br>
+    {% endfor %}
+</div>
+{% endblock %}
