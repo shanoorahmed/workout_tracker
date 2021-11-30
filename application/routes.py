@@ -9,7 +9,7 @@ from .models import User, Exerciselist, Workout, Exercise, Set
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('index.html')
 
 @app.route('/workout_log')
 @login_required
@@ -67,17 +67,13 @@ def register():
 def add_workout():
     if request.method == 'POST':
         user = User.query.filter_by(username = current_user.username).first()
-
         workout = Workout(date=datetime.now(), user_id=user.id)
-
         exercise_count = int(request.form['exercise_count'])
 
         for exercise_num in range(1,exercise_count + 1):
             exercise = Exercise(order=exercise_num, exercise_id=request.form['exercise'+str(exercise_num)], workout=workout)
-
             weights = request.form.getlist('weight' + str(exercise_num))
             reps = request.form.getlist('reps' + str(exercise_num))
-
             set_order = 1
             for weight, rep in zip(weights, reps):
                 work_set = Set(order=set_order, exercise=exercise, weight=weight, reps=rep)
@@ -90,6 +86,31 @@ def add_workout():
 
     exercises = Exerciselist.query.all()
     return render_template('add_workout.html', exercises=exercises)
+
+@app.route('/edit', methods=['POST','GET'])
+@login_required
+def edit():
+    if request.method == 'POST':
+        workout_id = int(request.form['workout_id'])
+        workout = Workout.query.filter_by(id = workout_id).first()
+        for exercise in workout.exercises:
+            for set in exercise.sets:
+                set.weight = request.form['weight' + str(set.id)]
+                set.reps = request.form['reps' + str(set.id)]
+        db.session.commit()
+        flash("Workout updated!", category="success")
+        return redirect(url_for('workout_log'))
+
+@app.route('/delete', methods=['POST','GET'])
+@login_required
+def delete():
+    if request.method == 'POST':
+        workout_id = int(request.form['workout_id'])
+        workout = Workout.query.filter_by(id = workout_id).first()
+        db.session.delete(workout)
+        db.session.commit()
+        flash("Workout deleted!", category="warning")
+        return redirect(url_for('workout_log'))
 
 @app.route('/logout')
 @login_required

@@ -4,7 +4,7 @@
 <br>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-6">
             <form method="POST" action="{{ url_for('add_workout') }}" id="workout">
                 <select name="exercise1" class="form-select" form="workout" required>
                     <option selected disabled value="">Select an exercise</option>
@@ -13,10 +13,14 @@
                     {% endfor %}
                 </select>
                 <div class="form-group" id="exercise1">
-                    <label>Weight</label>
-                    <input type="text" class="form-control" name="weight1" placeholder="weight" required>
-                    <label>Reps</label>
-                    <input type="text" class="form-control" name="reps1" placeholder="reps" required>       
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" name="weight1" placeholder="Weight" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="reps1" placeholder="Repetitions" required>   
+                        </div>
+                    </div>
                 </div>  
                 <button type="button" class="btn btn-info addSet" exercise="1">Add Set</button>           
                 <button type="button" id="addExercise" class="btn btn-primary">Add Exercise</button>
@@ -41,9 +45,13 @@
 </script>
 
 <script type="text/html" id="set_template">
-    <label>Weight</label>
-    <input type="text" class="form-control" name="weight<%= exercise_num %>" placeholder="weight" required>
-    <label>Reps</label>
-    <input type="text" class="form-control" name="reps<%= exercise_num %>" placeholder="reps" required>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" name="weight<%= exercise_num %>" placeholder="Weight" required>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="reps<%= exercise_num %>" placeholder="Repetitions" required>
+        </div>
+    </div>
 </script>
 {% endblock %}

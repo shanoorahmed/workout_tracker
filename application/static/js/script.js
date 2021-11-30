@@ -1,10 +1,6 @@
 $(document).ready(function() {
-
     exercise_template = _.template($("#exercise_template").html());
-    
-
     set_template = _.template($("#set_template").html());
-    
 
     $("#addExercise").on('click', function() {
         exercise_num = Number($("[name=exercise_count]").val()) + 1;
@@ -18,11 +14,8 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.addSet', function() {
-
         exercise_num = Number($(this).attr("exercise"));
-
         set_compiled = set_template({exercise_num : exercise_num});
-
         $("#exercise" + exercise_num).append(set_compiled);
     });
 });
