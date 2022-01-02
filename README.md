@@ -5,7 +5,7 @@ For zip downloads, unzip the folder and go to step 4.
 2) Initialize an empty git repository inside the folder by running the command "git init" in your terminal.  
 3) Clone the repository using "git clone https://github.com/shanoorahmed/workout_tracker.git".  
 4) Move into the folder, set up a new virtual enviroment and activate it.  
-   4.1) For making a new virtual enviroment, paste "python3 -m venv venv" and run it  
+   4.1) For making a new virtual enviroment, paste "python3 -m venv venv" and run it.  
    4.2) For activating it:  
         Windows:  
         i) Set-ExecutionPolicy Unrestricted -scope process  
